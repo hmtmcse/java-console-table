@@ -16,6 +16,10 @@ public class BasicTable {
         TableRowData rowData = table.setRowData("Touhid Mia");
         rowData.add("Team Lead", TableConstant.CENTER_ALIGN, TableConstant.YALLOW);
         rowData.add("System & Research");
+        rowData.add("System & Research");
+        rowData.add("System & Research");
+        rowData.add("System & Research");
+        rowData.add("System & Research");
         table.addRow(rowData);
 
         rowData = table.setRowData("Touhid Mia Touhid");

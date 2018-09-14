@@ -76,12 +76,21 @@ public class TableFactory {
         stringBuilder.append(TableConstant.NEW_LINE);
         for (int i = 0; i < columnWidth.size(); i++){
             stringBuilder.append("|");
-            stringBuilder.append(getTableRowToString(tableDataList.get(i), columnWidth, i));
+            stringBuilder.append(getTableRowToString(getTableData(tableDataList, i), columnWidth, i));
         }
         stringBuilder.append("|");
         stringBuilder.append(TableConstant.NEW_LINE);
         return stringBuilder.toString();
     }
+
+    public TableData getTableData(List<TableData> tableDataList, Integer integer){
+        try{
+            return tableDataList.get(integer);
+        }catch (Exception e){
+            return new TableData("");
+        }
+    }
+
 
     public String consoleTableHeader(Table table){
         return consoleTableRowString(table.getColumnWidth(), table.headerDefinition.getTableDataList());
