@@ -1,16 +1,18 @@
-package com.hmtmcse.console.table.data;
+package com.hmtmcse.console.table.data.old;
 
 import com.hmtmcse.console.table.common.TableConstant;
 
-public class TableColumn {
+public class TableRow {
 
     public String name;
-    public String align;
+    public String align = TableConstant.CENTER_ALIGN;
+    public Integer colSpan = 0;
     public String textColor;
     public String type = TableConstant.TABLE_ROW;
+    public Integer characterLength = 0;
 
 
-    public TableColumn(String name) {
+    public TableRow(String name) {
         this.name = name;
     }
 
@@ -44,5 +46,13 @@ public class TableColumn {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getCharacterLength() {
+        return characterLength;
+    }
+
+    public void setCharacterLength(Integer characterLength) {
+        this.characterLength = characterLength;
     }
 }

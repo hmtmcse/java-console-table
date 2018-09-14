@@ -1,45 +1,67 @@
 package com.hmtmcse.console.table.data;
 
+
+import com.hmtmcse.console.table.processor.TableFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Table {
+public class Table extends TableHtmlAttr {
 
-    public List<TableRow> tableHeaders = new ArrayList<>();
-    public List<List<TableRow>> tableRows = new ArrayList<>();
+    public TableHeaderDefinition headerDefinition;
+    public List<TableRow> rows;
+    public TableFactory tableFactory;
     public Integer column = 0;
     public List<Integer> columnWidth = new ArrayList<>();
 
-
-    public void addHeader(TableRow row){
-        tableHeaders.add(row);
+    public Table() {
+        headerDefinition = new TableHeaderDefinition();
+        rows = new ArrayList<>();
+        tableFactory = new TableFactory();
     }
 
-    public List<TableRow> getTableHeaders() {
-        return tableHeaders;
+    public TableHeaderDefinition addHeader(String data) {
+        return this.headerDefinition.add(data);
     }
 
-    public Integer getColumn() {
-        return column;
+    public TableHeaderDefinition addHeader(String data, String align) {
+        return this.headerDefinition.add(data, align);
     }
 
-    public void setColumn(Integer column) {
-        this.column = column;
+    public TableHeaderDefinition addHeader(String data, String align, String textColor) {
+        return this.headerDefinition.add(data, align, textColor);
     }
 
-    public List<Integer> getColumnWidth() {
-        return columnWidth;
+    public TableRowData setRowData(String data) {
+        return new TableRowData().add(data);
+    }
+
+    public TableRowData setRowData(String data, String align) {
+        return new TableRowData().add(data, align);
+    }
+
+    public TableRowData setRowData(String data, String align, String textColor) {
+        return new TableRowData().add(data, align, textColor);
+    }
+
+    public Table addRow(TableRowData rowData) {
+        rows.add(rowData);
+        return this;
+    }
+
+    public Table toTable(){
+        tableFactory.toTable(this);
+        return this;
     }
 
     public void setColumnWidthItem(Integer item) {
         columnWidth.add(item);
     }
 
-    public List<List<TableRow>> getTableRows() {
-        return tableRows;
+    public List<TableRow> getRows() {
+        return rows;
     }
 
-    public void addRowItem(List<TableRow> rowItem) {
-        this.tableRows.add(rowItem);
+    public List<Integer> getColumnWidth() {
+        return columnWidth;
     }
 }

@@ -1,7 +1,10 @@
 package com.hmtmcse.console.table.processor;
 
-import com.hmtmcse.console.table.data.Table;
-import com.hmtmcse.console.table.data.TableRow;
+import com.hmtmcse.console.table.common.TableConstant;
+import com.hmtmcse.console.table.data.CellSpacing;
+import com.hmtmcse.console.table.data.old.Table;
+import com.hmtmcse.console.table.data.old.TableRow;
+import com.hmtmcse.console.table.data.old.TableRowItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,12 +14,8 @@ import java.util.Map;
 
 public class LengthCalculator {
 
-    private Table table;
-    private Map<Integer, Integer> rowCharacterMaxWidth = new HashMap<>();
 
-    public LengthCalculator(Table table){
-        this.table = table;
-    }
+    private Map<Integer, Integer> rowCharacterMaxWidth = new HashMap<>();
 
 
     public Table calculateColumn(Table table){
@@ -26,6 +25,37 @@ public class LengthCalculator {
             table.setColumn(table.getTableRows().size());
         }
         return table;
+    }
+
+    public CellSpacing calculateCellSpace(Integer maxColLength, String data, String align){
+        Integer length = (maxColLength - data.length());
+        CellSpacing cellSpacing = new CellSpacing();
+        switch (align){
+            case TableConstant.LEFT_ALIGN:
+                cellSpacing.end += length;
+                break;
+            case TableConstant.RIGHT_ALIGN:
+                cellSpacing.start += length;
+                break;
+            case TableConstant.CENTER_ALIGN:
+                cellSpacing.start += (int) Math.ceil((double) length / 2);
+                cellSpacing.end += (int) Math.floor((double) length / 2);
+                break;
+        }
+        return cellSpacing;
+    }
+
+    public Integer colSpanCalculator(Integer rowIndex, List<Integer> columnWidth, Integer span) {
+        Integer loop = rowIndex + span;
+        if (loop > columnWidth.size()) {
+            loop = rowIndex - columnWidth.size();
+        }
+        Integer length = 0;
+        for (int i = 0; i < loop; i++) {
+            length += columnWidth.get(rowIndex);
+            rowIndex++;
+        }
+        return length;
     }
 
 
@@ -40,9 +70,9 @@ public class LengthCalculator {
         }
 
         Integer tmp, rowItems = 0;
-        for (List<TableRow> tableRows : table.getTableRows()){
+        for (TableRowItem tableRowItem : table.getTableRows()){
             index = 0;
-            for (TableRow tableRow: tableRows){
+            for (TableRow tableRow: tableRowItem.getRowItems()){
                 tableRow.characterLength = (tableRow.name != null ? tableRow.name.length() : 0);
                 if (rowCharacterMaxWidth.get(index) != null){
                     tmp = rowCharacterMaxWidth.get(index);
@@ -52,10 +82,10 @@ public class LengthCalculator {
                 }else{
                     rowCharacterMaxWidth.put(index, tableRow.characterLength);
                 }
-                tableRows.set(index, tableRow);
+                tableRowItem.rowItems.set(index, tableRow);
                 index++;
             }
-            table.getTableRows().set(rowItems, tableRows);
+            table.getTableRows().set(rowItems, tableRowItem);
             rowItems++;
         }
 
@@ -70,7 +100,7 @@ public class LengthCalculator {
 
 
 
-    public Table calculate(){
+    public Table calculate(Table table){
         table = calculateColumn(table);
         table = calculateColumnWidth(table);
         return table;
