@@ -5,7 +5,7 @@ import com.hmtmcse.console.table.common.TableConstant;
 import com.hmtmcse.console.table.data.CellSpacing;
 import com.hmtmcse.console.table.data.Table;
 import com.hmtmcse.console.table.data.TableData;
-import com.hmtmcse.console.table.data.old.TableRow;
+import com.hmtmcse.console.table.data.TableRow;
 
 import java.util.List;
 
@@ -19,14 +19,18 @@ public class TableFactory {
 
 
     public String getRowSeparatorLine(List<Integer> columns){
+        return getRowSeparatorLine(columns, "+", "-");
+    }
+
+    public String getRowSeparatorLine(List<Integer> columns, String corner, String middle){
         StringBuilder stringBuilder = new StringBuilder();
         for (Integer characters : columns){
-            stringBuilder.append("+--");
+            stringBuilder.append(corner + middle + middle);
             for (int i = 0; i < characters; i++){
-                stringBuilder.append("-");
+                stringBuilder.append(middle);
             }
         }
-        stringBuilder.append("+");
+        stringBuilder.append(corner);
         return stringBuilder.toString();
     }
 
@@ -76,7 +80,6 @@ public class TableFactory {
         }
         stringBuilder.append("|");
         stringBuilder.append(TableConstant.NEW_LINE);
-        stringBuilder.append(defaultRowSeparator);
         return stringBuilder.toString();
     }
 
@@ -84,14 +87,27 @@ public class TableFactory {
         return consoleTableRowString(table.getColumnWidth(), table.headerDefinition.getTableDataList());
     }
 
-    public void consoleTable(Table table){
+    public String consoleTableRow(Table table){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (TableRow tableRow: table.getRows()){
+           stringBuilder.append(consoleTableRowString(table.getColumnWidth(), tableRow.getTableDataList()));
+        }
+        return stringBuilder.toString();
+    }
 
+
+
+    public String consoleTable(Table table){
+        table.commonRowSeparator = getRowSeparatorLine(table.columnWidth);
+        String tableString = consoleTableHeader(table);
+        tableString += consoleTableRow(table);
+        tableString += table.commonRowSeparator;
+        return tableString;
     }
 
     public void toTable(Table table){
         table = process(table);
-        String header = consoleTableHeader(table);
-        System.out.println(header);
+        System.out.println(consoleTable(table));
     }
 
 }

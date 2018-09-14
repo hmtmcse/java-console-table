@@ -20,8 +20,13 @@ public class TableRowData extends TableRow {
         return this;
     }
 
-    public TableRowData add(String data, String align, String textCcolor){
-        tableDataList.add(new TableData(data).setAlign(align).setTextColor(textCcolor));
+    public TableRowData add(String data, String align, String textColor){
+        tableDataList.add(new TableData(data).setAlign(align).setTextColor(textColor));
+        return this;
+    }
+
+    public TableRowData add(String data, String align, String textColor, Integer colSpan){
+        tableDataList.add(new TableData(data).setAlign(align).setTextColor(textColor).setColSpan(colSpan));
         return this;
     }
 

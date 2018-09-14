@@ -29,10 +29,6 @@ public class Calculator {
         Integer tmp, rowItems = 0;
         for (TableRow tableRow : table.getRows()) {
             index = 0;
-
-            System.out.println(tableRow.getTableDataList());
-
-
             for (TableData tableData : tableRow.getTableDataList()) {
                 tableData.characterLength = (tableData.data != null ? tableData.data.length() : 0);
                 if (columnCharacterMaxWidth.get(index) != null) {

@@ -12,6 +12,7 @@ public class Table extends TableHtmlAttr {
     public TableFactory tableFactory;
     public Integer column = 0;
     public List<Integer> columnWidth = new ArrayList<>();
+    public String commonRowSeparator = "";
 
     public Table() {
         headerDefinition = new TableHeaderDefinition();

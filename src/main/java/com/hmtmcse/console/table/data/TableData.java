@@ -49,8 +49,9 @@ public class TableData extends TableHtmlAttr {
         return colSpan;
     }
 
-    public void setColSpan(Integer colSpan) {
+    public TableData setColSpan(Integer colSpan) {
         this.colSpan = colSpan;
+        return this;
     }
 
     public Integer getCharacterLength() {
