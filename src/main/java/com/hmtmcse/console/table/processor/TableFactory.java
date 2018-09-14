@@ -46,9 +46,12 @@ public class TableFactory {
     }
 
 
-    public String getTableRowToString(TableData tableData, Integer maxColLength) {
+    public String getTableRowToString(TableData tableData, List<Integer> columnWidth, Integer index) {
         calculator = new Calculator();
-        CellSpacing cellSpacing = calculator.calculateCellSpace(maxColLength, tableData.data, tableData.align);
+        if (tableData.colSpan != 0){
+            calculator.colSpanCalculator(index, columnWidth, tableData.colSpan);
+        }
+        CellSpacing cellSpacing = calculator.calculateCellSpace(columnWidth.get(index), tableData.data, tableData.align);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(getSpace(cellSpacing.start));
         if (tableData.textColor != null) {
@@ -69,7 +72,7 @@ public class TableFactory {
         stringBuilder.append(TableConstant.NEW_LINE);
         for (int i = 0; i < columnWidth.size(); i++){
             stringBuilder.append("|");
-            stringBuilder.append(getTableRowToString(tableDataList.get(i), columnWidth.get(i)));
+            stringBuilder.append(getTableRowToString(tableDataList.get(i), columnWidth, i));
         }
         stringBuilder.append("|");
         stringBuilder.append(TableConstant.NEW_LINE);
