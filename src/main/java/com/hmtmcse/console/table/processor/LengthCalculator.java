@@ -5,6 +5,7 @@ import com.hmtmcse.console.table.data.TableRow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -38,20 +39,24 @@ public class LengthCalculator {
             index++;
         }
 
-        Integer tmp;
-        index = 0;
-        for (TableRow tableRow: table.getTableRows()){
-            tableRow.characterLength = (tableRow.name != null ? tableRow.name.length() : 0);
-            if (rowCharacterMaxWidth.get(index) != null){
-                tmp = rowCharacterMaxWidth.get(index);
-                if (tmp < tableRow.characterLength){
+        Integer tmp, rowItems = 0;
+        for (List<TableRow> tableRows : table.getTableRows()){
+            index = 0;
+            for (TableRow tableRow: tableRows){
+                tableRow.characterLength = (tableRow.name != null ? tableRow.name.length() : 0);
+                if (rowCharacterMaxWidth.get(index) != null){
+                    tmp = rowCharacterMaxWidth.get(index);
+                    if (tmp < tableRow.characterLength){
+                        rowCharacterMaxWidth.put(index, tableRow.characterLength);
+                    }
+                }else{
                     rowCharacterMaxWidth.put(index, tableRow.characterLength);
                 }
-            }else{
-                rowCharacterMaxWidth.put(index, tableRow.characterLength);
+                tableRows.set(index, tableRow);
+                index++;
             }
-            table.tableHeaders.set(index, tableRow);
-            index++;
+            table.getTableRows().set(rowItems, tableRows);
+            rowItems++;
         }
 
         table.columnWidth = new ArrayList<>();

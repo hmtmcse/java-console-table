@@ -6,7 +6,7 @@ import java.util.List;
 public class Table {
 
     public List<TableRow> tableHeaders = new ArrayList<>();
-    public List<TableRow> tableRows = new ArrayList<>();
+    public List<List<TableRow>> tableRows = new ArrayList<>();
     public Integer column = 0;
     public List<Integer> columnWidth = new ArrayList<>();
 
@@ -15,16 +15,8 @@ public class Table {
         tableHeaders.add(row);
     }
 
-    public void addRow(TableRow tableRow){
-        tableRows.add(tableRow);
-    }
-
     public List<TableRow> getTableHeaders() {
         return tableHeaders;
-    }
-
-    public List<TableRow> getTableRows() {
-        return tableRows;
     }
 
     public Integer getColumn() {
@@ -35,17 +27,19 @@ public class Table {
         this.column = column;
     }
 
-
-
-    public void setTableRows(List<TableRow> tableRows) {
-        this.tableRows = tableRows;
-    }
-
     public List<Integer> getColumnWidth() {
         return columnWidth;
     }
 
     public void setColumnWidthItem(Integer item) {
         columnWidth.add(item);
+    }
+
+    public List<List<TableRow>> getTableRows() {
+        return tableRows;
+    }
+
+    public void addRowItem(List<TableRow> rowItem) {
+        this.tableRows.add(rowItem);
     }
 }

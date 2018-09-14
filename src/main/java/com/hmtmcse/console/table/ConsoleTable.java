@@ -2,7 +2,11 @@ package com.hmtmcse.console.table;
 
 import com.hmtmcse.console.table.data.Table;
 import com.hmtmcse.console.table.data.TableRow;
+import com.hmtmcse.console.table.data.TableRowItem;
 import com.hmtmcse.console.table.processor.TableFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsoleTable {
 
@@ -14,7 +18,13 @@ public class ConsoleTable {
         tableFactory = new TableFactory();
     }
 
-    public ConsoleTable addRow(String name){
+    public TableRowItem addRowItem(String item){
+        return new TableRowItem().addItem(item);
+    }
+
+
+    public ConsoleTable addRow(TableRowItem rowItem){
+        table.addRowItem(rowItem.getRowItems());
         return this;
     }
 
