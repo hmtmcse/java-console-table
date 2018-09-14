@@ -27,9 +27,8 @@ public class BasicTable {
         rowData.add("System & Research Touhid");
         table.addRow(rowData);
 
-        rowData = table.setRowData("Touhid Mia");
-        rowData.add("Team Lead System System System", TableConstant.CENTER_ALIGN, TableConstant.YALLOW);
-        rowData.add("Touhid System & Research");
+        rowData = table.setRowData();
+        rowData.add("Touhid System & Research", TableConstant.CENTER_ALIGN, TableConstant.YALLOW, 100);
         table.addRow(rowData);
 
         rowData = table.setRowData("Touhid Mia");

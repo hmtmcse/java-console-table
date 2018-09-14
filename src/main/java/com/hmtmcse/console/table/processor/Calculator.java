@@ -77,13 +77,14 @@ public class Calculator {
     public Integer colSpanCalculator(Integer rowIndex, List<Integer> columnWidth, Integer span) {
         Integer loop = rowIndex + span;
         if (loop > columnWidth.size()) {
-            loop = rowIndex - columnWidth.size();
+            span = columnWidth.size() - rowIndex;
         }
         Integer length = 0;
-        for (int i = 0; i < loop; i++) {
-            length += columnWidth.get(rowIndex);
+        for (int i = 0; i < span; i++) {
+            length += columnWidth.get(rowIndex) + 3;
             rowIndex++;
         }
+        length -= 3;
         return length;
     }
 

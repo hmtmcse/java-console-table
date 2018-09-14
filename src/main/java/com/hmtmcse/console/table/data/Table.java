@@ -36,6 +36,10 @@ public class Table extends TableHtmlAttr {
         return new TableRowData().add(data);
     }
 
+    public TableRowData setRowData() {
+        return new TableRowData();
+    }
+
     public TableRowData setRowData(String data, String align) {
         return new TableRowData().add(data, align);
     }
