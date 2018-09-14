@@ -9,6 +9,7 @@ public class BasicTable {
         consoleTable.addHeader("Name");
         consoleTable.addHeader("Designation");
         consoleTable.addHeader("Team");
+        consoleTable.toTable();
     }
 
 }
