@@ -28,7 +28,7 @@ public class BasicTable {
         rowData.add("WebCommander");
         table.addRow(rowData);
 
-        table.toTable();
+        table.toTablePrint();
     }
 
 
@@ -52,7 +52,7 @@ public class BasicTable {
         rowData.add("WebCommander");
         table.addRow(rowData);
 
-        table.toTable();
+        table.toTablePrint();
     }
 
     public static void colorfulAndAlign(){
@@ -76,7 +76,7 @@ public class BasicTable {
         rowData.add("WebCommander");
         table.addRow(rowData);
 
-        table.toTable();
+        table.toTablePrint();
     }
 
 
@@ -117,7 +117,7 @@ public class BasicTable {
         rowData.add("Bangladesh", TableConstant.CENTER_ALIGN, TableConstant.RED);
         table.addRow(rowData);
 
-        table.toTable();
+        table.toTablePrint();
     }
 
 

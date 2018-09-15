@@ -121,9 +121,9 @@ public class TableFactory {
         return tableString;
     }
 
-    public void toTable(Table table){
+    public String toTable(Table table){
         table = process(table);
-        System.out.println(consoleTable(table));
+        return consoleTable(table);
     }
 
 }

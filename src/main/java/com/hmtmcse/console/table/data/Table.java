@@ -53,9 +53,12 @@ public class Table extends TableHtmlAttr {
         return this;
     }
 
-    public Table toTable(){
-        tableFactory.toTable(this);
-        return this;
+    public String toTable(){
+       return tableFactory.toTable(this);
+    }
+
+    public void toTablePrint(){
+       System.out.println(tableFactory.toTable(this));
     }
 
     public void setColumnWidthItem(Integer item) {
