@@ -4,7 +4,7 @@ import com.hmtmcse.console.table.common.TableConstant;
 import com.hmtmcse.console.table.data.Table;
 import com.hmtmcse.console.table.data.TableRowData;
 
-public class BasicTable {
+public class ConsoleTable {
 
 
     public static void withHeader(){
