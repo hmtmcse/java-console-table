@@ -97,7 +97,10 @@ public class TableFactory {
 
 
     public String consoleTableHeader(Table table){
-        return consoleTableRowString(table.getColumnWidth(), table.headerDefinition.getTableDataList());
+        if ( table.headerDefinition.getTableDataList().size() != 0){
+            return consoleTableRowString(table.getColumnWidth(), table.headerDefinition.getTableDataList());
+        }
+        return "";
     }
 
     public String consoleTableRow(Table table){
