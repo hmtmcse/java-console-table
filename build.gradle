@@ -30,7 +30,7 @@ tasks.withType(Jar) {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "file:W:\\codes\\maven-repository")
+            repository(url: "file:$rootDir/jarRepo")
         }
     }
 }
