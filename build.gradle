@@ -27,13 +27,6 @@ tasks.withType(Jar) {
     destinationDir = file("$rootDir/binary")
 }
 
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            repository(url: "file:$rootDir/jarRepo")
-//        }
-//    }
-//}
 
 
 dependencies {
